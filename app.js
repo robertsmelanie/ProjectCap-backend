@@ -29,7 +29,7 @@ app.use(cors());
 
 // Basic Routes
 app.get('/', (req, res) => res.send('Server is live!'));
-app.use('/products', productsRoutes)
+app.use('/supplies', productsRoutes)
 app.use('/contact', contactRoutes)
 
 
