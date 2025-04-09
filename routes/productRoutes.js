@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const Product = require('../models/productModel');
+const Products = require('../models/productModel');
 
 // GET all products
 router.get('/', async (req, res) => {
     try {
-        const products = await Product.find();
+        const products = await Products.find();
         res.json(products);
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -16,13 +16,13 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
     try {
         if (Array.isArray(req.body)) {
-            const products = await Product.insertMany(req.body); // handle array
+            const products = await Products.insertMany(req.body); // handle array
             res.status(201).json(products);
         } else {
             const { ItemTitle, Image, Price, Description, Keywords } = req.body;
-            const newProduct = new Product({ ItemTitle, Image, Price, Description, Keywords });
-            const savedProduct = await newProduct.save(); // handle single
-            res.status(201).json(savedProduct);
+            const newProducts = new Products({ ItemTitle, Image, Price, Description, Keywords });
+            const savedProducts = await newProducts.save(); // handle single
+            res.status(201).json(savedProducts);
         }
     } catch (err) {
         res.status(400).json({ message: err.message });
