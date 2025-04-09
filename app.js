@@ -19,7 +19,7 @@ console.log('MONGO_URI =', MONGO_URI);
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
-
+console.log(process.env.OPENAI_API_KEY)
 // Middleware
 app.use(express.json());
 app.use(cors());
@@ -31,7 +31,7 @@ app.use(cors());
 app.get('/', (req, res) => res.send('Server is live!'));
 app.use('/supplies', productsRoutes)
 app.use('/contact', contactRoutes)
-
+// app.use('/api/chat', chatR)
 
 
 // OpenAI Chat Route
@@ -58,6 +58,7 @@ app.post("/api/chat", async (req, res) => {
     res.status(500).json({ error: "Something went wrong" });
   }
 });
+
 
 // Mount route modules
 app.use('/auth', authRoutes);
